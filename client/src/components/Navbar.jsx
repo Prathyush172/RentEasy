@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Home, MessageCircle, PlusCircle, Building2, LogOut, Menu, X, User } from 'lucide-react';
+import { Home, MessageCircle, PlusCircle, Building2, LogOut, Menu, X, User, Key } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
@@ -19,11 +19,23 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-18">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2 group">
-              <div className="bg-gradient-to-br from-primary-600 to-primary-700 p-2 rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Home className="h-6 w-6 text-white" />
+            <Link to="/" className="flex items-center space-x-3 group">
+              {/* Custom Logo */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-primary-600 rounded-2xl blur-sm group-hover:blur-md transition-all duration-300"></div>
+                <div className="relative bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 p-2.5 rounded-2xl group-hover:scale-110 transition-all duration-300 shadow-xl">
+                  <div className="relative">
+                    <Home className="h-6 w-6 text-white" />
+                    <Key className="h-3 w-3 text-yellow-300 absolute -bottom-0.5 -right-0.5 rotate-45" />
+                  </div>
+                </div>
               </div>
-              <span className="text-2xl font-extrabold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">RentEasy</span>
+              <div>
+                <span className="text-2xl font-black bg-gradient-to-r from-primary-600 via-primary-700 to-primary-800 bg-clip-text text-transparent">
+                  Rent<span className="text-primary-600">Easy</span>
+                </span>
+                <p className="text-[10px] font-semibold text-gray-500 -mt-1 tracking-wider">SMART PROPERTY FINDER</p>
+              </div>
             </Link>
           </div>
 
