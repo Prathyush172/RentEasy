@@ -1,17 +1,20 @@
 # 🏠 RentEasy - Smart Property Finder
 
-A full-stack MERN (MongoDB, Express, React, Node.js) real estate listing platform with Google Maps integration, advanced filters, and real-time chat functionality.
+A full-stack MERN (MongoDB, Express, React, Node.js) real estate listing platform with interactive maps, advanced filters, and real-time chat functionality.
+
+## 💰 100% FREE TO RUN - No API Keys Required!
 
 ## ✨ Features
 
 - **Property Listings**: Browse, search, and filter rental properties
-- **Google Maps Integration**: View property locations on interactive maps
+- **Interactive Maps**: View property locations on maps with OpenStreetMap (100% FREE!)
 - **Advanced Filters**: Filter by budget, location, size, bedrooms, bathrooms, and property type
 - **Real-time Chat**: Direct communication between property owners and renters using Socket.io
 - **User Authentication**: Secure login and registration with JWT
 - **Role-based Access**: Different features for owners and renters
 - **Responsive Design**: Modern UI built with React and Tailwind CSS
 - **Property Management**: Owners can add, edit, and delete their listings
+- **💰 Zero Cost**: Completely free to run - no API keys needed!
 
 ## 🛠️ Tech Stack
 
@@ -21,7 +24,7 @@ A full-stack MERN (MongoDB, Express, React, Node.js) real estate listing platfor
 - Tailwind CSS
 - Axios
 - Socket.io Client
-- Google Maps API
+- Leaflet.js + OpenStreetMap (Free Maps!)
 - Lucide React (icons)
 - React Toastify
 - Vite
@@ -40,9 +43,10 @@ A full-stack MERN (MongoDB, Express, React, Node.js) real estate listing platfor
 Before running this project, make sure you have:
 
 - Node.js (v16 or higher)
-- MongoDB (local or Atlas)
-- Google Maps API Key
+- MongoDB (local or Atlas - free tier available)
 - npm or yarn
+
+**That's it! No API keys needed - 100% FREE to run! 🎉**
 
 ## 🚀 Installation & Setup
 
@@ -78,21 +82,11 @@ npm install
 Create a `.env` file in the client directory:
 ```env
 VITE_API_URL=http://localhost:5000/api
-VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
 ```
 
-### 4. Get Google Maps API Key
+That's all you need! No API keys required! 🎉
 
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project or select an existing one
-3. Enable the following APIs:
-   - Maps JavaScript API
-   - Geocoding API
-   - Places API
-4. Create credentials (API Key)
-5. Add the API key to both `.env` files
-
-### 5. Start MongoDB
+### 4. Start MongoDB
 
 Make sure MongoDB is running:
 ```bash
@@ -102,7 +96,7 @@ mongod
 # If using MongoDB Atlas, just use your connection string in MONGODB_URI
 ```
 
-### 6. Run the Application
+### 5. Run the Application
 
 **Terminal 1 - Start Backend:**
 ```bash
@@ -187,11 +181,13 @@ RentEasy/
 
 ## 🎨 Features in Detail
 
-### Google Maps Integration
+### Interactive Maps with OpenStreetMap
+- **100% FREE** - No API keys or costs!
 - Interactive maps on property details page
 - Marker showing exact property location
-- Custom map controls and zoom levels
-- Geocoding support for addresses
+- Zoom and pan controls
+- Clean and modern map interface
+- Powered by Leaflet.js and OpenStreetMap
 
 ### Advanced Filtering
 - Filter by city/location

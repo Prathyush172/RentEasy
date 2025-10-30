@@ -107,18 +107,56 @@ const PropertyDetails = () => {
                   <h1 className="text-3xl font-bold text-gray-800 mb-2">
                     {property.title}
                   </h1>
-                  <div className="flex items-center text-gray-600">
+                  <div className="flex items-center text-gray-600 mb-2">
                     <MapPin className="h-5 w-5 mr-2" />
                     <span>
                       {property.location.address}, {property.location.city}, {property.location.state}
                     </span>
                   </div>
+                  <div className="inline-block">
+                    {property.listingType === 'sale' && (
+                      <span className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        For Sale
+                      </span>
+                    )}
+                    {property.listingType === 'rent' && (
+                      <span className="bg-gradient-to-r from-primary-600 to-primary-700 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        For Rent
+                      </span>
+                    )}
+                    {property.listingType === 'both' && (
+                      <span className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        Rent or Sale
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <div className="text-right">
-                  <p className="text-3xl font-bold text-primary-600">
-                    ${property.price.toLocaleString()}
-                  </p>
-                  <p className="text-gray-600">per month</p>
+                  {property.listingType === 'sale' ? (
+                    <>
+                      <p className="text-3xl font-bold text-green-600">
+                        ${(property.salePrice || property.price).toLocaleString()}
+                      </p>
+                      <p className="text-gray-600">sale price</p>
+                    </>
+                  ) : property.listingType === 'both' ? (
+                    <>
+                      <p className="text-2xl font-bold text-primary-600">
+                        ${property.price.toLocaleString()}/mo
+                      </p>
+                      <p className="text-xl font-bold text-green-600 mt-1">
+                        ${property.salePrice.toLocaleString()}
+                      </p>
+                      <p className="text-sm text-gray-600">rent or buy</p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-3xl font-bold text-primary-600">
+                        ${property.price.toLocaleString()}
+                      </p>
+                      <p className="text-gray-600">per month</p>
+                    </>
+                  )}
                 </div>
               </div>
 
@@ -205,7 +243,7 @@ const PropertyDetails = () => {
 
               <button
                 onClick={handleContactOwner}
-                className="w-full bg-primary-600 text-white py-3 rounded-lg hover:bg-primary-700 transition flex items-center justify-center gap-2"
+                className={`w-full ${property.listingType === 'sale' ? 'bg-green-600 hover:bg-green-700' : property.listingType === 'both' ? 'bg-purple-600 hover:bg-purple-700' : 'bg-primary-600 hover:bg-primary-700'} text-white py-3 rounded-lg transition flex items-center justify-center gap-2 font-semibold`}
               >
                 <MessageCircle className="h-5 w-5" />
                 <span>Send Message</span>

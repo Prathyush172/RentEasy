@@ -34,8 +34,9 @@ CLIENT_URL=http://localhost:3000
 **Frontend** - Create `client/.env`:
 ```env
 VITE_API_URL=http://localhost:5000/api
-VITE_GOOGLE_MAPS_API_KEY=YOUR_GOOGLE_MAPS_API_KEY
 ```
+
+**That's all! No API keys needed - maps are 100% FREE! 🎉**
 
 ### Step 3: Setup MongoDB
 
@@ -55,19 +56,7 @@ VITE_GOOGLE_MAPS_API_KEY=YOUR_GOOGLE_MAPS_API_KEY
    MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/renteasy
    ```
 
-### Step 4: Get Google Maps API Key
-
-1. Visit [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project
-3. Enable these APIs:
-   - Maps JavaScript API
-   - Geocoding API
-4. Create an API Key
-5. Add the key to `client/.env`
-
-**Important:** For development, you can use the maps without restrictions, but for production, add HTTP referrer restrictions.
-
-### Step 5: Run the Application
+### Step 4: Run the Application
 
 Open two terminal windows:
 
@@ -85,7 +74,7 @@ npm run dev
 ```
 You should see: `Local: http://localhost:3000`
 
-### Step 6: Access the Application
+### Step 5: Access the Application
 
 Open your browser and navigate to: **http://localhost:3000**
 
@@ -137,14 +126,14 @@ Open your browser and navigate to: **http://localhost:3000**
   lsof -ti:5000 | xargs kill -9
   ```
 
-### Google Maps Not Showing
-**Problem:** Map shows gray box or error
+### Maps Not Showing
+**Problem:** Map shows blank or has issues
 
 **Solution:**
-- Verify API key is correct in `client/.env`
-- Ensure Maps JavaScript API is enabled
-- Check browser console for specific errors
-- Add http://localhost:3000 to authorized domains
+- Check browser console for errors
+- Ensure internet connection (maps load from OpenStreetMap)
+- Clear browser cache and reload
+- Make sure Leaflet CSS is loading properly
 
 ### CORS Error
 **Problem:** `Access to XMLHttpRequest has been blocked by CORS policy`

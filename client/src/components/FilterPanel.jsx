@@ -24,6 +24,7 @@ const FilterPanel = ({ filters, onFilterChange, onClearFilters }) => {
       minSize: '',
       maxSize: '',
       propertyType: '',
+      listingType: '',
       bedrooms: '',
       bathrooms: ''
     };
@@ -104,8 +105,26 @@ const FilterPanel = ({ filters, onFilterChange, onClearFilters }) => {
             <option value="house">House</option>
             <option value="villa">Villa</option>
             <option value="studio">Studio</option>
-            <option value="room">Room</option>
-            <option value="commercial">Commercial</option>
+            <option value="condo">Condo</option>
+            <option value="townhouse">Townhouse</option>
+          </select>
+        </div>
+
+        {/* Listing Type */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Listing Type
+          </label>
+          <select
+            name="listingType"
+            value={localFilters.listingType}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          >
+            <option value="">All Listings</option>
+            <option value="rent">For Rent</option>
+            <option value="sale">For Sale</option>
+            <option value="both">Rent or Sale</option>
           </select>
         </div>
 

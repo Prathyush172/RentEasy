@@ -1,51 +1,45 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+// Fix for default marker icon in React-Leaflet
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+});
 
 const GoogleMap = ({ coordinates, zoom = 15, markers = [] }) => {
-  const mapRef = useRef(null);
-  const mapInstanceRef = useRef(null);
-
-  useEffect(() => {
-    if (!window.google) {
-      console.error('Google Maps API not loaded');
-      return;
-    }
-
-    if (mapRef.current && !mapInstanceRef.current) {
-      // Initialize map
-      mapInstanceRef.current = new window.google.maps.Map(mapRef.current, {
-        center: coordinates,
-        zoom: zoom,
-        mapTypeControl: true,
-        streetViewControl: true,
-        fullscreenControl: true,
-      });
-
-      // Add main marker
-      new window.google.maps.Marker({
-        position: coordinates,
-        map: mapInstanceRef.current,
-        title: 'Property Location',
-        animation: window.google.maps.Animation.DROP,
-      });
-
-      // Add additional markers if provided
-      markers.forEach((marker) => {
-        new window.google.maps.Marker({
-          position: marker.position,
-          map: mapInstanceRef.current,
-          title: marker.title,
-          icon: marker.icon,
-        });
-      });
-    }
-  }, [coordinates, zoom, markers]);
+  const position = [coordinates.lat, coordinates.lng];
 
   return (
-    <div 
-      ref={mapRef} 
+    <MapContainer
+      center={position}
+      zoom={zoom}
       className="w-full h-full rounded-lg"
-      style={{ minHeight: '400px' }}
-    />
+      style={{ minHeight: '400px', zIndex: 0 }}
+    >
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      
+      {/* Main property marker */}
+      <Marker position={position}>
+        <Popup>
+          <strong>Property Location</strong>
+        </Popup>
+      </Marker>
+
+      {/* Additional markers if provided */}
+      {markers.map((marker, index) => (
+        <Marker key={index} position={[marker.position.lat, marker.position.lng]}>
+          <Popup>{marker.title}</Popup>
+        </Marker>
+      ))}
+    </MapContainer>
   );
 };
 

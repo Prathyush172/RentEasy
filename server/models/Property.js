@@ -13,11 +13,21 @@ const propertySchema = new mongoose.Schema({
   propertyType: {
     type: String,
     required: true,
-    enum: ['apartment', 'house', 'villa', 'studio', 'room', 'commercial']
+    enum: ['apartment', 'house', 'condo', 'studio', 'villa', 'townhouse']
+  },
+  listingType: {
+    type: String,
+    required: true,
+    enum: ['rent', 'sale', 'both'],
+    default: 'rent'
   },
   price: {
     type: Number,
     required: [true, 'Please provide a price']
+  },
+  salePrice: {
+    type: Number,
+    required: false
   },
   location: {
     address: {

@@ -38,8 +38,9 @@ cp .env.example .env
 Edit `client/.env`:
 ```env
 VITE_API_URL=http://localhost:5000/api
-VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
 ```
+
+**That's it! No API keys needed! 🆓**
 
 ## 3️⃣ Start MongoDB
 
@@ -83,15 +84,15 @@ Navigate to: **http://localhost:3000**
 - **Add** your own property (if owner)
 - **Chat** with other users
 
-## 🗺️ Google Maps Setup (Optional but Recommended)
+## 🗺️ Maps - Completely FREE!
 
-1. Go to: https://console.cloud.google.com/
-2. Create a project
-3. Enable "Maps JavaScript API"
-4. Create API Key
-5. Add key to `client/.env`
+This app uses **OpenStreetMap** with **Leaflet.js**:
+- ✅ No API keys required
+- ✅ No usage limits
+- ✅ No costs ever
+- ✅ Works out of the box
 
-Without Google Maps key, the app will still work but maps won't display.
+Just run the app and maps will work automatically! 🎉
 
 ## 📌 Default Ports
 
@@ -109,8 +110,8 @@ Without Google Maps key, the app will still work but maps won't display.
 - Or kill the process using that port
 
 **Can't see maps?**
-- Add your Google Maps API key
-- Enable Maps JavaScript API in Google Cloud Console
+- Check internet connection (maps load from OpenStreetMap)
+- Clear browser cache and reload
 
 For more detailed instructions, see `SETUP_GUIDE.md`
 

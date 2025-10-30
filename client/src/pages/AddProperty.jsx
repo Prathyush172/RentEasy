@@ -15,7 +15,9 @@ const AddProperty = () => {
     title: '',
     description: '',
     propertyType: 'apartment',
+    listingType: 'rent',
     price: '',
+    salePrice: '',
     address: '',
     city: '',
     state: '',
@@ -45,7 +47,11 @@ const AddProperty = () => {
         title: formData.title,
         description: formData.description,
         propertyType: formData.propertyType,
+        listingType: formData.listingType,
         price: Number(formData.price),
+        ...(formData.listingType === 'sale' || formData.listingType === 'both' 
+          ? { salePrice: Number(formData.salePrice) } 
+          : {}),
         location: {
           address: formData.address,
           city: formData.city,
@@ -133,25 +139,62 @@ const AddProperty = () => {
                       <option value="house">House</option>
                       <option value="villa">Villa</option>
                       <option value="studio">Studio</option>
-                      <option value="room">Room</option>
-                      <option value="commercial">Commercial</option>
+                      <option value="condo">Condo</option>
+                      <option value="townhouse">Townhouse</option>
                     </select>
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Monthly Rent ($) *
+                      Listing Type *
                     </label>
-                    <input
-                      type="number"
-                      name="price"
-                      required
-                      value={formData.price}
+                    <select
+                      name="listingType"
+                      value={formData.listingType}
                       onChange={handleChange}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                      placeholder="2000"
-                    />
+                    >
+                      <option value="rent">For Rent</option>
+                      <option value="sale">For Sale</option>
+                      <option value="both">Both (Rent & Sale)</option>
+                    </select>
                   </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  {(formData.listingType === 'rent' || formData.listingType === 'both') && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Monthly Rent ($) *
+                      </label>
+                      <input
+                        type="number"
+                        name="price"
+                        required
+                        value={formData.price}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                        placeholder="2000"
+                      />
+                    </div>
+                  )}
+
+                  {(formData.listingType === 'sale' || formData.listingType === 'both') && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Sale Price ($) *
+                      </label>
+                      <input
+                        type="number"
+                        name="salePrice"
+                        required
+                        value={formData.salePrice}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                        placeholder="350000"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

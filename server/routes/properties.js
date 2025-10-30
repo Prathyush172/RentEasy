@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
       minSize,
       maxSize,
       propertyType,
+      listingType,
       bedrooms,
       bathrooms
     } = req.query;
@@ -40,6 +41,10 @@ router.get('/', async (req, res) => {
 
     if (propertyType) {
       query.propertyType = propertyType;
+    }
+
+    if (listingType) {
+      query.listingType = listingType;
     }
 
     if (bedrooms) {

@@ -20,6 +20,7 @@ export const PropertyProvider = ({ children }) => {
     minSize: '',
     maxSize: '',
     propertyType: '',
+    listingType: '',
     bedrooms: '',
     bathrooms: ''
   });
