@@ -1,0 +1,28 @@
+{
+  "name": "renteasy",
+  "version": "1.0.0",
+  "description": "Smart Property Finder - MERN Stack Real Estate Platform",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm run dev",
+    "server": "cd server && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install",
+    "build": "cd client && npm run build"
+  },
+  "keywords": [
+    "mern",
+    "real-estate",
+    "rental",
+    "property",
+    "react",
+    "nodejs",
+    "mongodb",
+    "express"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
